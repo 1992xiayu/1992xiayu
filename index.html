@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*.bg{*/
+        /*    color: #acff7a;*/
+        /*}*/
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
+</head>
+<body>
+<div :style="col" class="bg" >
+    hello world!
+<!-- v-bind赋予可变化的属性   -->
+    <div v-bind:id="bg1">
+        {{(msg+count)}}
+    </div>
+    <div :class="['active','add','more',{'another': count > 5}]">
+        {{(count + 1)*10}}
+    </div>
+    <!--将div里面的内容显示出来-->
+    <div v-html="template"></div>
+    <a v-bind:href="url">优酷</a>
+    <a :href="url1">百度</a>
+<!--    v-on事件属性-->
+    <button type="button" v-on:click="submit()">{{count}}</button>
+    <button type="button" @click="submit()">{{count}}</button>
+<!-- 遍历list  -->
+    <div v-for="item in list">{{item.name}}</div>
+</div>
+<script>
+    var app = new Vue({
+        el: '.bg',
+        data: {
+            bg1: 'app-bind',
+            msg: 'hello vue!!',
+            url: 'http://www.youku.com',
+            url1: 'http://www.baidu.com',
+            count:0,
+            list:[
+                {name:'liwei', age:29},
+                {name:'小张', age:39}
+                ],
+            col:{
+                color: 'green',
+                textShadow: '10px 0 8px green'
+            },
+            template: '<div>hello template</div>'
+        },
+        methods:{
+            submit:function () {
+                this.count ++
+            }
+        }
+    })
+</script>
+</body>
+</html>
